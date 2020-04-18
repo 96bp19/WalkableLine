@@ -24,8 +24,6 @@ public class WalkablePoint : MonoBehaviour
         edgeCollider.points = collisionPoints.ToArray();
     }
 
-
-
     public void AddNewCollisionPoint(Vector2 position)
     {
 
@@ -36,8 +34,8 @@ public class WalkablePoint : MonoBehaviour
         }
         collisionPoints.Add(transform.InverseTransformPoint(position));
         lineRenderer.positionCount = collisionPoints.Count;
-
         edgeCollider.points = collisionPoints.ToArray();
         lineRenderer.SetPosition(collisionPoints.Count - 1, position);
+
     }
 }
