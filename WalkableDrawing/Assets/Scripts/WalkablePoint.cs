@@ -24,15 +24,17 @@ public class WalkablePoint : MonoBehaviour
         edgeCollider.points = collisionPoints.ToArray();
     }
 
+    Vector2 localPos;
     public void AddNewCollisionPoint(Vector2 position)
     {
 
-        if (collisionPoints.Count > 0 && collisionPoints[collisionPoints.Count - 1] == position)
+        localPos = transform.InverseTransformPoint(position);
+        if (collisionPoints.Count > 0 && collisionPoints[collisionPoints.Count - 1] == localPos)
         {
             Debug.Log("same pos as before");
             return;
         }
-        collisionPoints.Add(transform.InverseTransformPoint(position));
+        collisionPoints.Add(localPos);
         lineRenderer.positionCount = collisionPoints.Count;
         edgeCollider.points = collisionPoints.ToArray();
         lineRenderer.SetPosition(collisionPoints.Count - 1, position);
